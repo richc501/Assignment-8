@@ -22,18 +22,28 @@ public class ReadWrite {
 				stu.writeInt(studentID);
 				stu.writeDouble(studentGPA);
 			}
-			System.out.println("Enter your student ID:");
+			System.out.println("Enter your student ID or -1 to quit:");
 			int enteredStuID=keyboard.nextInt();
-			int stuID=0;
+			int stuTempID=0; 
+			double stuTempGPA=0;
 			int index=0;
 			//writing loop
-			do
+			while(enteredStuID!=-1)
 			{
-				stu.seek(index);
-				stuID = stu.readInt();
-				index++;
-			}while(stuID!=enteredStuID);
-			System.out.println(stu.readDouble());
+				for(int i=0;i<5;i++)
+				{
+					stuTempID = stu.readInt();
+					stuTempGPA = stu.readDouble();
+					if(stuTempID==enteredStuID)
+					{
+						System.out.println(stuTempGPA);
+						break;
+					}
+				}
+				System.out.println("Enter your student ID or -1 to quit:");
+				enteredStuID = keyboard.nextInt();
+			}
+
 			stu.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found!");
