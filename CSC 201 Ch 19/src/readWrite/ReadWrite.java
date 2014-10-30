@@ -39,6 +39,8 @@ public class ReadWrite {
 						break;
 					}
 				}
+				if(stuTempID!=enteredStuID)
+					throw new Exception("Student ID Not Found!");
 				System.out.println("Enter your student ID or -1 to quit:");
 				enteredStuID = keyboard.nextInt();
 			}
@@ -48,6 +50,8 @@ public class ReadWrite {
 			System.out.println("File not found!");
 		} catch (IOException e) {
 			System.out.println("IO Exception");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		} 
 	}
 }
