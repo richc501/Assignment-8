@@ -26,8 +26,7 @@ public class ReadWrite {
 			int enteredStuID=keyboard.nextInt();
 			int stuTempID=0; 
 			double stuTempGPA=0;
-			int index=0;
-			//writing loop
+			//reading loop
 			while(enteredStuID!=-1)
 			{
 				for(int i=0;i<5;i++)
