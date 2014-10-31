@@ -3,6 +3,7 @@ package readWrite;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ReadWrite {
@@ -28,8 +29,13 @@ public class ReadWrite {
 			//reading loop
 			while(enteredStuID!=-1)
 			{
-				System.out.println("Enter your student ID or -1 to quit:");
-				enteredStuID = keyboard.nextInt();
+					try {
+						System.out.println("Enter your student ID or -1 to quit:");
+						enteredStuID = keyboard.nextInt();
+					} catch (InputMismatchException e) {
+						System.out.println("Invalid Input");
+						System.exit(0);
+					}
 				stu.seek(0);
 				for(int i=0;i<5;i++)
 				{
@@ -41,9 +47,9 @@ public class ReadWrite {
 						break;
 					}
 				}
-				if(stuTempID!=enteredStuID)
+				if(stuTempID!=enteredStuID&&enteredStuID!=-1)
 					throw new Exception("Student ID Not Found!");
-				
+
 			}
 
 			stu.close();
@@ -53,6 +59,8 @@ public class ReadWrite {
 			System.out.println("IO Exception");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		} 
+		} finally {
+			System.out.println("System closed");
+		}
 	}
 }
