@@ -11,7 +11,6 @@ public class FractionDemo {
 	public static void main(String[] args)
 	{
 		Fraction[] frac = new Fraction[3];
-		FileInputStream inFile;
 		for(int i=0;i<3;i++)
 		{
 			frac[i] = new Fraction((int)Math.random()*100+1,(int)Math.random()*100+1);
@@ -25,20 +24,12 @@ public class FractionDemo {
 				objOutput.writeObject(frac[j]);
 				objOutput.close();
 				outFile.close();
-				inFile = new FileInputStream("SerialF.dat");
-				ObjectInputStream objInput = new ObjectInputStream(inFile);
-				Object obj = objInput.readObject();
-				objInput.close();
-				inFile.close();
-				System.out.println((Fraction)obj);
 			} 
 			catch (FileNotFoundException e)
 			{
 				System.out.println("File not found");
 			} catch (IOException e) {
 				System.out.println("IO Exception");
-			} catch (ClassNotFoundException e) {
-				System.out.println("No Fraction class found!");
 			}
 		}
 	}

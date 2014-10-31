@@ -22,13 +22,15 @@ public class ReadWrite {
 				stu.writeInt(studentID);
 				stu.writeDouble(studentGPA);
 			}
-			System.out.println("Enter your student ID or -1 to quit:");
-			int enteredStuID=keyboard.nextInt();
+			int enteredStuID=0;
 			int stuTempID=0; 
 			double stuTempGPA=0;
 			//reading loop
 			while(enteredStuID!=-1)
 			{
+				System.out.println("Enter your student ID or -1 to quit:");
+				enteredStuID = keyboard.nextInt();
+				stu.seek(0);
 				for(int i=0;i<5;i++)
 				{
 					stuTempID = stu.readInt();
@@ -41,8 +43,7 @@ public class ReadWrite {
 				}
 				if(stuTempID!=enteredStuID)
 					throw new Exception("Student ID Not Found!");
-				System.out.println("Enter your student ID or -1 to quit:");
-				enteredStuID = keyboard.nextInt();
+				
 			}
 
 			stu.close();
